@@ -125,8 +125,55 @@ let player = {
   y: 1 
 };
 
+let botonArriba, botonAbajo, botonIzquierda, botonDerecha;
+
+function crearControlesTouch() {
+  // Crear los botones
+  botonArriba = createButton('⬆️');
+  botonAbajo = createButton('⬇️');
+  botonIzquierda = createButton('⬅️');
+  botonDerecha = createButton('➡️');
+
+  // Estilos
+  const size = '60px';
+  botonArriba.size(size, size);
+  botonAbajo.size(size, size);
+  botonIzquierda.size(size, size);
+  botonDerecha.size(size, size);
+
+  // Posicionamiento relativo al canvas
+  let cx = width / 2;
+  let cy = height + 10;
+
+  botonArriba.position(cx - 30, cy);
+  botonIzquierda.position(cx - 90, cy + 60);
+  botonAbajo.position(cx - 30, cy + 60);
+  botonDerecha.position(cx + 30, cy + 60);
+
+  // Eventos
+  botonArriba.mousePressed(() => {
+    keyCode = UP_ARROW;
+    moverPersonaje();
+  });
+  botonAbajo.mousePressed(() => {
+    keyCode = DOWN_ARROW;
+    moverPersonaje();
+  });
+  botonIzquierda.mousePressed(() => {
+    keyCode = LEFT_ARROW;
+    moverPersonaje();
+  });
+  botonDerecha.mousePressed(() => {
+    keyCode = RIGHT_ARROW;
+    moverPersonaje();
+  });
+}
+
+
+
 function setup() {
   createCanvas(maze[0].length * cellSize, maze.length * cellSize);
+  crearControlesTouch();
 }
 
 function draw() {  
