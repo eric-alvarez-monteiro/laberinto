@@ -135,7 +135,7 @@ function crearControlesTouch() {
   botonDerecha = createButton('➡️');
 
   // Estilos
-  const size = '60px';
+  const size = '120px';
   botonArriba.size(size, size);
   botonAbajo.size(size, size);
   botonIzquierda.size(size, size);
@@ -143,7 +143,7 @@ function crearControlesTouch() {
 
   // Posicionamiento relativo al canvas
   let cx = width / 2;
-  let cy = height + 10;
+  let cy = height + 5;
 
   botonArriba.position(cx - 30, cy);
   botonIzquierda.position(cx - 90, cy + 60);
