@@ -9,7 +9,7 @@ let direccion;
 let frameUltimoMovimiento = 0;
 let framesEntreMovimientos = 10;
 let level = 0
-let distanciaVision = 200;
+let distanciaVision = 2;
 
 function preload() {
   teleportImage = loadImage ('./images/teleport.png');
