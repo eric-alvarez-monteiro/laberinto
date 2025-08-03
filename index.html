@@ -37,7 +37,7 @@
 
     function scaleCanvasAndButtons() {
       // Escalar el canvas visualmente al ancho de la pantalla
-      const scale = (window.innerWidth - 250)/ logicalCanvasWidth;
+      const scale = (window.innerWidth - 70)/ logicalCanvasWidth;
       const displayWidth = logicalCanvasWidth * scale;
       const displayHeight = logicalCanvasHeight * scale;
 
@@ -46,16 +46,16 @@
 
       // Posicionar botones en coordenadas relativas escaladas
       buttons.up.style.left    = `${250 * scale}px`;
-      buttons.up.style.top     = `${765 * scale}px`;
+      buttons.up.style.top     = `${displayHeight + 10 * scale}px`;
 
       buttons.down.style.left  = `${250 * scale}px`;
-      buttons.down.style.top   = `${825 * scale}px`;
+      buttons.down.style.top   = `${(displayHeight +40) * scale}px`;
 
       buttons.left.style.left  = `${190 * scale}px`;
-      buttons.left.style.top   = `${825 * scale}px`;
+      buttons.left.style.top   = `${(displayHeight +40) * scale}px`;
 
       buttons.right.style.left = `${310 * scale}px`;
-      buttons.right.style.top  = `${825 * scale}px`;
+      buttons.right.style.top  = `${(displayHeight +40) * scale}px`;
     }
 
     window.addEventListener('resize', scaleCanvasAndButtons);
