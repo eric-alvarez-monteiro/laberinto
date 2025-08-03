@@ -37,7 +37,7 @@
 
     function scaleCanvasAndButtons() {
       // Escalar el canvas visualmente al ancho de la pantalla
-      const scale = window.innerWidth / logicalCanvasWidth;
+      const scale = (window.innerWidth - 250)/ logicalCanvasWidth;
       const displayWidth = logicalCanvasWidth * scale;
       const displayHeight = logicalCanvasHeight * scale;
 
