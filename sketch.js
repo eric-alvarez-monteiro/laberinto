@@ -12,11 +12,11 @@ let level = 0
 let distanciaVision = 200;
 
 function preload() {
-  teleportImage = loadImage ('/images/teleport.png');
-  metaImage =loadImage ('/images/meta.png')
-  lavaImage =loadImage ('/images/lava.png')
-  llaveImage =loadImage ('/images/llave.png')
-  personaImage =loadImage ('/images/persona.png')
+  teleportImage = loadImage ('./images/teleport.png');
+  metaImage =loadImage ('./images/meta.png')
+  lavaImage =loadImage ('./images/lava.png')
+  llaveImage =loadImage ('./images/llave.png')
+  personaImage =loadImage ('./images/persona.png')
 }
 
 function crearMaze3() {
