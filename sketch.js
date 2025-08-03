@@ -9,18 +9,18 @@ let direccion;
 let frameUltimoMovimiento = 0;
 let framesEntreMovimientos = 10;
 let level = 0
-let distanciaVision = 2;
+let distanciaVision = 200;
 
 function preload() {
-  teleportImage = loadImage ('./images/teleport.png');
-  metaImage =loadImage ('./images/meta.png')
-  lavaImage =loadImage ('./images/lava.png')
-  llaveImage =loadImage ('./images/llave.png')
-  personaImage =loadImage ('./images/persona.png')
+  teleportImage = loadImage ('/images/teleport.png');
+  metaImage =loadImage ('/images/meta.png')
+  lavaImage =loadImage ('/images/lava.png')
+  llaveImage =loadImage ('/images/llave.png')
+  personaImage =loadImage ('/images/persona.png')
 }
 
 function crearMaze3() {
-  return [
+  let maze =  [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1],
@@ -33,9 +33,12 @@ function crearMaze3() {
     [1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1],
     [1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-    [1, 0, pared, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4, 1],
+    [1, 0, pared, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4,1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   ];
+  return maze[0].map((_, colIndex) => 
+  maze.map(row => row[colIndex])
+);
 }
 
 let mazes = [];
@@ -57,6 +60,10 @@ let maze1 = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ];
 
+maze1 = maze1[0].map((_, colIndex) => 
+  maze1.map(row => row[colIndex])
+);
+
 let maze2 = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   [1, 0, 0, 0, 0, 0, 0, 1, 3, 3, 3, 1, 0, 3, 3, 0, 1, 1, 1],
@@ -73,6 +80,10 @@ let maze2 = [
   [1, 0, 0, 0, 0, 0, 0, 1, 3, 3, 3, 1, 3, 0, 0, 0, 1, 2, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ];
+
+maze2 = maze2[0].map((_, colIndex) => 
+  maze2.map(row => row[colIndex])
+);
 
 let maze3 = crearMaze3();
 
@@ -93,6 +104,10 @@ let maze4 = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ];
 
+maze4 = maze4[0].map((_, colIndex) => 
+  maze4.map(row => row[colIndex])
+);
+
 let maze5 = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   [1, 0, 3, 3, 3, 3, 3, 3, 5, 6, 6, 3, 3, 3, 3, 3, 3, 3, 1],
@@ -110,6 +125,10 @@ let maze5 = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ]
 
+maze5 = maze5[0].map((_, colIndex) => 
+  maze5.map(row => row[colIndex])
+);
+
 mazes[0] = maze1;
 mazes[1] = maze2;
 mazes[2] = maze3;
@@ -124,6 +143,7 @@ let player = {
   x: 1,
   y: 1 
 };
+
 
 let botonArriba, botonAbajo, botonIzquierda, botonDerecha;
 
@@ -168,7 +188,6 @@ function crearControlesTouch() {
     moverPersonaje();
   });
 }
-
 
 
 function setup() {
@@ -270,6 +289,7 @@ function colocarPersonaje() {
 }
 
 function moverPersonaje() {
+  //console.log(player)
   if(!final && (frameCount - frameUltimoMovimiento < framesEntreMovimientos)) {
     return;
   }
@@ -300,6 +320,7 @@ function moverPersonaje() {
       maze[newY][newX] === 7) {
     player.x = newX;
     player.y = newY;
+    console.log('nueva posicion', 'x:', player.x, 'y:', player.y)
     frameUltimoMovimiento = frameCount
   }
   
@@ -314,21 +335,23 @@ function moverPersonaje() {
   }
   
    if (maze[player.y][player.x] === 5) {
-     if (player.y == 12, player.x == 2){
-       player.x = 10
-       player.y = 1
-     }
-   }
-  if (maze[player.y][player.x] === 5) {
-     if (player.y == 12, player.x == 8){
-       player.x = 10
-       player.y = 12
-     }
-   }
-  if (maze[player.y][player.x] === 5) {
-     if (player.y == 1, player.x == 8){
+     console.log('hemos entrado en un teleport', 'x:', player.x, 'y:', player.y)
+     if (player.y == 2 && player.x == 12) {
+       console.log('player movido')
        player.x = 1
-       player.y = 12
+       player.y = 10
+     }
+
+     else if (player.y == 8 && player.x == 12){
+       console.log('movido 2')
+       player.x = 12
+       player.y = 10
+     }
+   
+     else if (player.y == 8 && player.x == 1){
+       console.log('movido 3')
+       player.x = 12
+       player.y = 10
      }
    }
   if (maze[player.y][player.x] === 7) {
