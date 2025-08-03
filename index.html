@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <style>
       button {
-        font-size: 2rem;
+        font-size: 1.25rem;
       }
       body {
         margin: 0;
@@ -23,7 +23,21 @@
 
     <script>
       setTimeout(() => {
-         const scale = window.innerWidth / logicalCanvasWidth;
+         
+          const canvas = document.querySelector('canvas');
+    const buttons = {
+      up:    document.getElementById('up'),
+      down:  document.getElementById('down'),
+      left:  document.getElementById('left'),
+      right: document.getElementById('right')
+    };
+
+    const logicalCanvasWidth = canvas.width;
+    const logicalCanvasHeight = canvas.height;
+
+    function scaleCanvasAndButtons() {
+      // Escalar el canvas visualmente al ancho de la pantalla
+      const scale = window.innerWidth / logicalCanvasWidth;
       const displayWidth = logicalCanvasWidth * scale;
       const displayHeight = logicalCanvasHeight * scale;
 
@@ -42,6 +56,12 @@
 
       buttons.right.style.left = `${310 * scale}px`;
       buttons.right.style.top  = `${825 * scale}px`;
+    }
+
+    window.addEventListener('resize', scaleCanvasAndButtons);
+    scaleCanvasAndButtons();
+
+
       }, 1000)
     </script>
   </head>
