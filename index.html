@@ -23,12 +23,25 @@
 
     <script>
       setTimeout(() => {
-        const virtualWidth = 560;
-        const scale = window.innerWidth / virtualWidth;
+         const scale = window.innerWidth / logicalCanvasWidth;
+      const displayWidth = logicalCanvasWidth * scale;
+      const displayHeight = logicalCanvasHeight * scale;
 
-        // Luego escala tu juego, canvas u otros elementos usando ese factor
-        canvas.style.transform = `scale(${scale})`;
-        canvas.style.transformOrigin = 'top left';
+      canvas.style.width = `${displayWidth}px`;
+      canvas.style.height = `${displayHeight}px`;
+
+      // Posicionar botones en coordenadas relativas escaladas
+      buttons.up.style.left    = `${250 * scale}px`;
+      buttons.up.style.top     = `${765 * scale}px`;
+
+      buttons.down.style.left  = `${250 * scale}px`;
+      buttons.down.style.top   = `${825 * scale}px`;
+
+      buttons.left.style.left  = `${190 * scale}px`;
+      buttons.left.style.top   = `${825 * scale}px`;
+
+      buttons.right.style.left = `${310 * scale}px`;
+      buttons.right.style.top  = `${825 * scale}px`;
       }, 1000)
     </script>
   </head>
